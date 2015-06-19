@@ -18,6 +18,9 @@ var inject = require('gulp-inject');
 var minifyCSS = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var replace = require('gulp-replace');
+var zip = require('gulp-zip');
+var runSequence = require('run-sequence');
+var clean = require('gulp-clean');
 
 
 /* ==========================================================================
@@ -25,7 +28,8 @@ var replace = require('gulp-replace');
 ============================================================================= */
 var src = './src'; // Source folder
 var dest = './build'; // Destination (build) folder
-
+var projectName = 'ink'; // Project name
+var archive = './archive';
 
 /* ==========================================================================
     TASKS
@@ -38,11 +42,11 @@ var dest = './build'; // Destination (build) folder
 * $ gulp
 */
 
-/* ===== HTML INSTALL ===== */
+/* ===== HTML INSTALL ===== 
 gulp.task('html-install', function() {
     return gulp.src('./bower_components/ink/templates/boilerplate.html')
         .pipe(gulp.dest('./src'));
-});
+}); */
 
 /* ===== CSS INSTALL ===== */
 gulp.task('css-install', function() {
@@ -54,10 +58,25 @@ gulp.task('css-install', function() {
 gulp.task('css', function(){
     return gulp.src(src + '/responsive.css')
         .pipe(minifyCSS())
-        .pipe(rename('responsive-min.css'))
         .pipe(replace('__ESCAPED_SOURCE_END_CLEAN_CSS__',''))
-        .pipe(gulp.dest(src))
+        .pipe(rename('responsive-min.css'))
+        .pipe(gulp.dest(''))
     });
+
+/* ===== ARCHIVE ===== */
+gulp.task('archive', function() {
+    return gulp.src(dest + '/*')
+        .pipe(zip(projectName + '.zip'))
+        .pipe(gulp.dest(archive));
+})
+
+/* ===== IMAGES ARCHIVE ===== */
+gulp.task('archive-img', function() {
+    return gulp.src(dest + '/*.{png,jpg}')
+        .pipe(zip(projectName + '-images.zip'))
+        .pipe(gulp.dest(archive));
+})
+
 
 /* ===== HTML ===== */
 gulp.task('html', function() {
@@ -87,7 +106,7 @@ gulp.task('html', function() {
           return file.contents.toString('utf8')
         }
       }))
-        .pipe(minifyHTML())
+        .pipe(minifyHTML(options))
         .pipe(rename('index.html'))
         // Output file
         .pipe(gulp.dest(dest));
@@ -95,7 +114,7 @@ gulp.task('html', function() {
 
 /* ===== IMAGES ===== */
 gulp.task('images', function () {
-    return gulp.src(src + '/images/*.png')
+    return gulp.src(src + '/images/*')
         .pipe(imagemin({
             progressive: true,
             svgoPlugins: [{removeViewBox: false}],
@@ -104,12 +123,17 @@ gulp.task('images', function () {
         .pipe(gulp.dest(dest));
 });
 
+/* ===== CLEAN ===== */
+gulp.task('clean', function() {
+    return gulp.src(dest).pipe(clean());
+});
+
 /* ==========================================================================
     TASK RUNNERS
 ============================================================================= */
 
 /* ===== INSTALL PROJECT ===== */
-gulp.task('install', ['html-install', 'css-install']);
+gulp.task('install', ['css-install']);
 
 
 /* ===== BUILD AND WATCH ===== */
@@ -124,4 +148,10 @@ gulp.task('watch', function() {
 
 /* ===== DEFAULT ===== */
 // Default gulp task ($ gulp)
-gulp.task('default', ['css', 'images', 'html']);
+gulp.task('default', function(callback) {
+  runSequence('clean',
+              ['css', 'images'],
+              'html',
+              ['archive', 'archive-img'],
+              callback);
+});
