@@ -1,0 +1,22 @@
+{
+  "name": "emailing",
+  "version": "0.0.0",
+  "description": "package for emailing",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "anc",
+  "license": "BSD-2-Clause",
+  "devDependencies": {
+    "gulp": "~3.9.0",
+    "gulp-inline-css": "~2.0.0",
+    "gulp-imagemin": "~2.2.1",
+    "imagemin-pngquant": "~4.1.0",
+    "gulp-minify-html": "~1.0.3",
+    "gulp-inject": "~1.3.1",
+    "gulp-minify-css": "~1.1.6",
+    "gulp-rename": "~1.2.2",
+    "gulp-replace": "~0.5.3"
+  }
+}

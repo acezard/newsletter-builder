@@ -1,0 +1,19 @@
+{
+  "name": "emailing",
+  "version": "0.0.0",
+  "authors": [
+    "anc"
+  ],
+  "description": "ink for emailing",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ink": "~1.0.5"
+  }
+}
