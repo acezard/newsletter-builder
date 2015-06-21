@@ -21,16 +21,7 @@
   * Message de notification
 
 ## 2. Installation
-Récupérer l'ensemble des fichiers sources, à extraire à la racine du dossier de développement : https://github.com/toplefty/newsletter-builder/archive/master.zip
-
-Pour installer le projet, il est ensuite nécessaire de récupérer toutes les dépendances. Ces étapes doivent être suivies l'une après l'autre :
-
-1. `$ npm install` Récupère gulp ainsi que tous les plugins nécessaires
-2. `$ bower install` Récupère le framework Ink
-3. `$ gulp install` Copie le .css du framework Ink dans le dossier source (./src)
-4. `$ gulp and-watch` Effecte un premier build (création des dossiers build et archive) puis lance un watch
-
-Il est alors possible de commencer immédiatement à travailler dans les fichiers **boilerplate.html**, **styles.css** et **responsive.css** sans aucune configuration supplémentaire.
+Lancer install.bat *dans le dossier de travail*.
 
 ## 3. Utilisation
 
