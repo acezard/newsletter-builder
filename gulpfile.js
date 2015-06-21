@@ -151,7 +151,7 @@ gulp.task('notify', function() {
 ============================================================================= */
 
 /* ===== INSTALL PROJECT ===== */
-gulp.task('install', ['css-install']);
+gulp.task('install', ['css-install', 'templates']);
 
 
 /* ===== BUILD AND WATCH ===== */

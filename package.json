@@ -1,6 +1,6 @@
 {
-  "name": "Newsletter Builder",
-  "version": "0.9",
+  "name": "newsletter-builder",
+  "version": "0.9.0",
   "description": "Optimized workflow designed for building responsive email newsletters",
   "main": "index.js",
   "private": true,
