@@ -21,7 +21,8 @@
   * Message de notification
 
 ## 2. Installation
-Lancer install.bat *dans le dossier de travail*.
+Lancer install.bat **dans le dossier de travail**. 
+Il est ensuite possible de commencer immédiatement à travailler, la fonction watch est déjà effective.
 
 ## 3. Utilisation
 
