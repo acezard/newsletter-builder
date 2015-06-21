@@ -21,6 +21,8 @@ var replace = require('gulp-replace');
 var zip = require('gulp-zip');
 var runSequence = require('run-sequence');
 var clean = require('gulp-clean');
+var notifier = require('node-notifier');
+var jade = require('gulp-jade');
 
 
 /* ==========================================================================
@@ -54,14 +56,17 @@ gulp.task('css-install', function() {
         .pipe(gulp.dest('./src'));
 });
 
-/* ===== CSS ===== */
-gulp.task('css', function(){
-    return gulp.src(src + '/responsive.css')
-        .pipe(minifyCSS())
-        .pipe(replace('__ESCAPED_SOURCE_END_CLEAN_CSS__',''))
-        .pipe(rename('responsive-min.css'))
-        .pipe(gulp.dest(''))
-    });
+/* ===== TEMPLATES ===== */
+gulp.task('templates', function() {
+  var YOUR_LOCALS = {};
+ 
+  gulp.src(src + '/*.jade')
+    .pipe(jade({
+      locals: YOUR_LOCALS
+    }))
+    .pipe(rename('intermediate.html'))
+    .pipe(gulp.dest(src))
+});
 
 /* ===== ARCHIVE ===== */
 gulp.task('archive', function() {
@@ -77,17 +82,16 @@ gulp.task('archive-img', function() {
         .pipe(gulp.dest(archive));
 })
 
-
 /* ===== HTML ===== */
 gulp.task('html', function() {
 
   var options = {
-    cdata: true,               // do no strip CDATA from scripts
+    cdata: false,               // do no strip CDATA from scripts
     comments: true,            // do not remove comments
-    quotes: true,              // do not remove arbitrary quotes
-    conditionals: true,         // do not remove conditional IE comments
-    spare: true,                // do not remove redundant attributes
-    empty: true,                // do not remove empty attributes
+    quotes: false,              // do not remove arbitrary quotes
+    conditionals: false,         // do not remove conditional IE comments
+    spare: false,                // do not remove redundant attributes
+    empty: false,                // do not remove empty attributes
     loose: false                // preserve one whitespace
   };
 
@@ -99,7 +103,7 @@ gulp.task('html', function() {
                 removeStyleTags: true,
                 removeLinkTags: true
         }))
-        .pipe(inject(gulp.src([src + '/responsive-min.css']), {
+        .pipe(inject(gulp.src([src + '/responsive.css']), {
         starttag: '<!-- inject:head:{{ext}} -->',
         transform: function (filePath, file) {
           // return file contents as string
@@ -109,6 +113,7 @@ gulp.task('html', function() {
         .pipe(minifyHTML(options))
         .pipe(rename('index.html'))
         // Output file
+        .pipe(gulp.dest(archive))
         .pipe(gulp.dest(dest));
 });
 
@@ -120,12 +125,25 @@ gulp.task('images', function () {
             svgoPlugins: [{removeViewBox: false}],
             use: [pngquant()]
         }))
-        .pipe(gulp.dest(dest));
+        .pipe(gulp.dest(dest))
 });
 
 /* ===== CLEAN ===== */
 gulp.task('clean', function() {
     return gulp.src(dest).pipe(clean());
+});
+/* ===== CLEAN-ZIP ===== */
+gulp.task('clean-zip', function() {
+    return gulp.src(archive).pipe(clean());
+});
+
+/* ===== NOTIFY ===== */
+gulp.task('notify', function() {
+    notifier.notify({
+        'title': 'Newsletter Builder',
+        'message': 'Task completed',
+        'icon': 'C:/Dev/ink/notifier-icon.png'
+    });
 });
 
 /* ==========================================================================
@@ -149,9 +167,11 @@ gulp.task('watch', function() {
 /* ===== DEFAULT ===== */
 // Default gulp task ($ gulp)
 gulp.task('default', function(callback) {
-  runSequence('clean',
-              ['css', 'images'],
+  runSequence(['clean', 'clean-zip'],
+              'templates',
+              'images',
               'html',
               ['archive', 'archive-img'],
+              'notify',
               callback);
 });
