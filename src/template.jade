@@ -1,18 +1,18 @@
 doctype strict
 html(xmlns='http://www.w3.org/1999/xhtml', xmlns:v='urn:schemas-microsoft-com:vml', xmlns:o='urn:schemas-microsoft-com:office:office')
-head
-  meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
-  meta(name='viewport', content='width=device-width')
-  link(rel='stylesheet', href='ink.css')
-  link(rel='stylesheet', href='styles.css')
-  title= 'Newsletter Demo'
-  // inject:head:css
-  // contents of css partials will be injected here
-  // endinject
-  | <!--[if gte mso 9]><xml><o:OfficeDocumentSettings><o:AllowPNG/><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml><![endif]-->
-  body(style='background: #333333')
+  head
+    meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
+    meta(name='viewport', content='width=device-width')
+    link(rel='stylesheet', href='ink.css')
+    link(rel='stylesheet', href='styles.css')
+    title= 'Newsletter Demo'
+    // inject:head:css
+    // contents of css partials will be injected here
+    // endinject
+    | <!--[if gte mso 9]><xml><o:OfficeDocumentSettings><o:AllowPNG/><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml><![endif]-->
+  body
     // GLOBAL WRAPPER
-    table.body(style='background: #333333')
+    table.body
       tr
         td.center(align='center', valign='top')
           center
@@ -35,14 +35,14 @@ head
                     tr
                       td.wrapper
                         // SIX COLUMNS
-                        table.twelve.columns
+                        table.six.columns
                           tr
                             td
                               | Six columns
                             td.expander
                       td.wrapper.last
                         // SIX COLUMNS
-                        table.twelve.columns
+                        table.six.columns
                           tr
                             td
                               | Six columns

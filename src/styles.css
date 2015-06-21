@@ -1,0 +1,21 @@
+/* === ADDITIONAL LAYOUT RULES === */
+.no-pad {
+    padding: 0;
+}
+.no-pad-top {
+    padding-top:0;
+}
+.no-pad-bottom {
+    padding-bottom:0;
+}
+.no-pad-right {
+    padding-right:0;
+}
+.no-pad-left {
+    padding-left:0;
+}
+.align-right {
+    text-align: right;
+}
+
+/* === YOUR STYLES === */
