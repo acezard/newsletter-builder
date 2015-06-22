@@ -7,7 +7,8 @@
 4. Démo
 
 ## 1. Features
-* Construit sur le framework Ink, mis à jour avec Bower lors de l'installation
+* Framework Zurban pour le layout CSS
+* Jade pour le template HTML
 * Compatibilité avec tous les clients mails les plus courants, y compris outlook 125%+ dpi
 * Automatiquement responsive
 * Support Retina
