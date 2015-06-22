@@ -2,10 +2,11 @@
 
 ## Table des matières
 1. Features
-2. Installation
-3. Utilisation
-4. Démo
-5. Futures mises à jour
+2. Dépendances
+3. Installation
+4. Utilisation
+5. Démo
+6. Futures mises à jour
 
 ## 1. Features
 * Framework Ink (Zurban) pour le layout CSS
@@ -22,11 +23,17 @@
   * Création de deux archives zip dans un dossier dédié : html+images ou uniquement images
   * Message de notification
 
-## 2. Installation
+## 2. Dépendances
+* node.js
+* npm
+* bower
+* git
+
+## 3. Installation
 Lancer install.bat **dans le dossier de travail**. 
 Il est ensuite possible de commencer immédiatement à travailler, la fonction watch est déjà effective.
 
-## 3. Utilisation
+## 4. Utilisation
 
 ### Utilisation générale
 Le travail se fait principalement dans boilerplate.html et styles.css
@@ -61,7 +68,7 @@ Liste des tâches générales :
 
 A noter que toute tâche de build, occasionnée par un `$watch` ou un `$gulp` lance l'intégralité des tâches individuelles, dont la suppression totale et irreversible de la version précédente du build.
 
-## 4. Démo
+## 5. Démo
 Pour voir le builder en action : http://toplefty.github.io/newsletter-demo/
 Cette page a été testée avec succès sur tous les clients web et desktop les plus courants. En ce qui concerne les mobiles, le responsive est 100% effectif sur les appareils Apple et Blackberry. En revanche, ce n'est pas le cas sur l'application Gmail.
 
@@ -140,7 +147,7 @@ Cette page a été testée avec succès sur tous les clients web et desktop les 
 | Yahoo! IE 10 (win)        |                  ✔                 |
 | Yahoo! IE 11 (win)        |                 ???                |
 
-## 5. Futures mises à jour
+## 6. Futures mises à jour
 * Ajout support LESS
 * Mixins et data Jade
 * Envoi email automatique après build
