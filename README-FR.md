@@ -5,6 +5,7 @@
 2. Installation
 3. Utilisation
 4. Démo
+5. Futures mises à jour
 
 ## 1. Features
 * Framework Ink (Zurban) pour le layout CSS
@@ -138,3 +139,9 @@ Cette page a été testée avec succès sur tous les clients web et desktop les 
 | Yahoo! Firefox (win)      |                  ✔                 |
 | Yahoo! IE 10 (win)        |                  ✔                 |
 | Yahoo! IE 11 (win)        |                 ???                |
+
+## 5. Futures mises à jour
+* Ajout support LESS
+* Mixins et data Jade
+* Envoi email automatique après build
+* Rafraîchissement automatique du browser après build
