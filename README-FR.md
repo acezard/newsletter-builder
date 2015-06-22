@@ -7,12 +7,12 @@
 4. Démo
 
 ## 1. Features
-* Framework Zurban pour le layout CSS
+* Framework Ink (Zurban) pour le layout CSS
 * Jade pour le template HTML
-* Compatibilité avec tous les clients mails les plus courants, y compris outlook 125%+ dpi
-* Automatiquement responsive
+* Compatibilité avec tous les clients mails les plus courants
+* Responsive
 * Support Retina
-* Automatisation des tâches, déclenchées à chaque modification d'un fichier source :
+* Automatisation des tâches :
   * Nettoyage des dossiers de production avant chaque build
   * Application inline du CSS (depuis feuilles de style séparées)
   * Compression des images
