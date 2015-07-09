@@ -1,0 +1,37 @@
+mixin globalWrapper(color)
+  body(style="background-color:#{color}")
+    table.body(style="background-color:#{color}")
+      tr
+        td.center(align='center', valign='top')
+          center
+            block
+
+mixin fixedContainer
+  table.container
+    tr
+      td
+        block
+
+mixin rowFullWidth
+  table.row
+    tr
+      td.wrapper.last
+        table.twelve.columns
+          tr
+            block
+mixin row
+  table.row
+    tr
+      block
+
+mixin sixCol
+  td.wrapper
+    table.six.columns
+      tr
+        block
+
+mixin sixColLast
+  td.wrapper.last
+    table.six.columns
+      tr
+        block

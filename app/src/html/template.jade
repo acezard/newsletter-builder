@@ -1,49 +1,23 @@
+include mixins/mixins
 doctype strict
 html(xmlns='http://www.w3.org/1999/xhtml', xmlns:v='urn:schemas-microsoft-com:vml', xmlns:o='urn:schemas-microsoft-com:office:office')
-  head
-    meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
-    meta(name='viewport', content='width=device-width')
-    link(rel='stylesheet', href='../../vendor/ink/css/ink.css')
-    link(rel='stylesheet', href='../css/styles.css')
-    title= 'Newsletter Demo'
-    // inject:head:css
-    // contents of css partials will be injected here
-    // endinject
-    | <!--[if gte mso 9]><xml><o:OfficeDocumentSettings><o:AllowPNG/><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml><![endif]-->
+  include includes/head
   body
-    // GLOBAL WRAPPER
-    table.body
-      tr
-        td.center(align='center', valign='top')
-          center
-            // CONTENT WRAPPER
-            table.container
-              tr
-                td
-                  // ROW 12
-                  table.row
-                    tr
-                      td.wrapper.last
-                        // TWELVE COLUMNS
-                        table.twelve.columns
-                          tr
-                            td
-                              | Twelve columns
-                            td.expander
-                  // ROW 6+6
-                  table.row
-                    tr
-                      td.wrapper
-                        // SIX COLUMNS
-                        table.six.columns
-                          tr
-                            td
-                              | Six columns
-                            td.expander
-                      td.wrapper.last
-                        // SIX COLUMNS
-                        table.six.columns
-                          tr
-                            td
-                              | Six columns
-                            td.expander
+    +globalWrapper('#777777')
+
+      +fixedContainer
+
+        +rowFullWidth
+          td
+            | Lorem Ipsum on twelve columns
+          td.expander
+
+        +row
+          +sixCol
+            td
+              | Lorem Ipsum on six columns
+            td.expander
+          +sixColLast
+            td
+              | Lorem Ipsum on six columns
+            td.expander

@@ -46,11 +46,10 @@ var exportDir = '../../export';
 
 /* ===== TEMPLATES ===== */
 gulp.task('templates', function() {
-  var YOUR_LOCALS = {};
 
-  gulp.src(srcDir + '/html/*.jade')
+  gulp.src(srcDir + '/html/template.jade')
     .pipe(jade({
-      locals: YOUR_LOCALS
+      pretty: true
     }))
     .pipe(rename('intermediate.html'))
     .pipe(gulp.dest(srcDir + '/html'))
