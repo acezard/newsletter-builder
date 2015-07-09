@@ -24,14 +24,14 @@ mixin row
     tr
       block
 
-mixin sixCol
+mixin col(size)
   td.wrapper
-    table.six.columns
+    table.columns(class="#{size}")
       tr
         block
 
-mixin sixColLast
+mixin colLast(size)
   td.wrapper.last
-    table.six.columns
+    table.columns(class="#{size}")
       tr
         block
