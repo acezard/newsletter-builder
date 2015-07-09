@@ -20,7 +20,7 @@ var rename = require('gulp-rename');
 var replace = require('gulp-replace');
 var zip = require('gulp-zip');
 var runSequence = require('run-sequence');
-var clean = require('gulp-clean');
+var del = require('del');
 var notifier = require('node-notifier');
 var jade = require('gulp-jade');
 
@@ -28,10 +28,10 @@ var jade = require('gulp-jade');
 /* ==========================================================================
     FOLDERS
 ============================================================================= */
-var src = './src'; // Source folder
-var dest = './build'; // Destination (build) folder
-var projectName = 'ink'; // Project name
-var archive = './archive';
+var srcDir = '../src'; // Source folder
+var buildDir = '../../build'; // Destination (build) folder
+var projectName = 'export'; // Project name
+var exportDir = '../../export';
 
 /* ==========================================================================
     TASKS
@@ -44,42 +44,30 @@ var archive = './archive';
 * $ gulp
 */
 
-/* ===== HTML INSTALL ===== 
-gulp.task('html-install', function() {
-    return gulp.src('./bower_components/ink/templates/boilerplate.html')
-        .pipe(gulp.dest('./src'));
-}); */
-
-/* ===== CSS INSTALL ===== */
-gulp.task('css-install', function() {
-    return gulp.src('./bower_components/ink/css/ink.css')
-        .pipe(gulp.dest('./src'));
-});
-
 /* ===== TEMPLATES ===== */
 gulp.task('templates', function() {
   var YOUR_LOCALS = {};
- 
-  gulp.src(src + '/*.jade')
+
+  gulp.src(srcDir + '/html/*.jade')
     .pipe(jade({
       locals: YOUR_LOCALS
     }))
     .pipe(rename('intermediate.html'))
-    .pipe(gulp.dest(src))
+    .pipe(gulp.dest(srcDir + '/html'))
 });
 
 /* ===== ARCHIVE ===== */
-gulp.task('archive', function() {
-    return gulp.src(dest + '/*')
+gulp.task('export', function() {
+    return gulp.src(buildDir + '/*')
         .pipe(zip(projectName + '.zip'))
-        .pipe(gulp.dest(archive));
+        .pipe(gulp.dest(exportDir));
 })
 
 /* ===== IMAGES ARCHIVE ===== */
-gulp.task('archive-img', function() {
-    return gulp.src(dest + '/*.{png,jpg}')
+gulp.task('export-img', function() {
+    return gulp.src(buildDir + '/*.{png,jpg}')
         .pipe(zip(projectName + '-images.zip'))
-        .pipe(gulp.dest(archive));
+        .pipe(gulp.dest(exportDir));
 })
 
 /* ===== HTML ===== */
@@ -96,14 +84,14 @@ gulp.task('html', function() {
   };
 
   // Get file
-    return gulp.src('./src/*.html')
+    return gulp.src(srcDir + '/html/*.html')
         .pipe(inlineCss({
                 applyStyleTags: true,
                 applyLinkTags: true,
                 removeStyleTags: true,
                 removeLinkTags: true
         }))
-        .pipe(inject(gulp.src([src + '/responsive.css']), {
+        .pipe(inject(gulp.src([srcDir + '/css/responsive.css']), {
         starttag: '<!-- inject:head:{{ext}} -->',
         transform: function (filePath, file) {
           // return file contents as string
@@ -113,28 +101,29 @@ gulp.task('html', function() {
         .pipe(minifyHTML(options))
         .pipe(rename('index.html'))
         // Output file
-        .pipe(gulp.dest(archive))
-        .pipe(gulp.dest(dest));
+        .pipe(gulp.dest(exportDir))
+        .pipe(gulp.dest(buildDir));
 });
 
 /* ===== IMAGES ===== */
 gulp.task('images', function () {
-    return gulp.src(src + '/images/*')
+    return gulp.src(srcDir + '/images/*')
         .pipe(imagemin({
             progressive: true,
             svgoPlugins: [{removeViewBox: false}],
             use: [pngquant()]
         }))
-        .pipe(gulp.dest(dest))
+        .pipe(gulp.dest(buildDir))
 });
 
 /* ===== CLEAN ===== */
-gulp.task('clean', function() {
-    return gulp.src(dest).pipe(clean());
+// Delete everything in destination folder
+gulp.task('clean', function (cb) {
+  del([!buildDir + '/.gitignore', buildDir + '/**/*'], {force: true}, cb);
 });
 /* ===== CLEAN-ZIP ===== */
-gulp.task('clean-zip', function() {
-    return gulp.src(archive).pipe(clean());
+gulp.task('clean-zip', function(cb) {
+    del([!exportDir + '/.gitignore', exportDir + '/**/*'], {force: true}, cb);
 });
 
 /* ===== NOTIFY ===== */
@@ -150,17 +139,15 @@ gulp.task('notify', function() {
     TASK RUNNERS
 ============================================================================= */
 
-/* ===== INSTALL PROJECT ===== */
-gulp.task('install', ['css-install', 'templates']);
-
-
 /* ===== BUILD AND WATCH ===== */
 gulp.task('and-watch', ['default', 'watch']);
 
 /* ===== WATCH ===== */
 gulp.task('watch', function() {
     // Folders to watch and tasks to execute
-    gulp.watch([src + '/**/*'], ['default']);
+    gulp.watch([srcDir + '/html/jade.html'], ['templates', 'html']);
+    gulp.watch([srcDir + '/images/*'], ['images']);
+    gulp.watch([srcDir + '/css/*'], ['html']);
 
 });
 
@@ -171,7 +158,7 @@ gulp.task('default', function(callback) {
               'templates',
               'images',
               'html',
-              ['archive', 'archive-img'],
+              ['export', 'export-img'],
               'notify',
               callback);
 });
