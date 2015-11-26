@@ -44,8 +44,8 @@
     display: table !important;
   }
 
-  table[class="body"] table.columns td,
-  table[class="body"] table.column td {
+  table[class="body"] table.columns > td,
+  table[class="body"] table.column > td {
     width: 100% !important;
   }
 
@@ -130,5 +130,48 @@
   table[class="body"] table[class="six columns c0 six-col-border px183"] {
     height: auto !important;
   }
+  .title {
+    font-size:20px !important;
+    word-break:keep-all !important;
+  }
+  .title-margin {
+    padding-bottom:0 !important;
+  }
+  .header {
+    height:auto !important;
+  }
+  .mobile-auto {
+    width:auto !important;
+  }
+  .menu-link {
+    font-size:9px !important;
+    word-break:keep-all !important;
+  }
+  .mobile-hidden {
+    display:none !important;
+  }
+  .donate-container {
+    background: #efefef !important;
+    padding:5px !important;
+  }
+  .donate {
+    display:block !important;
+    text-align: center !important;
+    
+    width:100% !important;
+  }
+  table[class="body"] img[class="w100 img-mobile"] {
+    width:100% !important;
+  }
+  .pr {
+    display:none !important;
+  }
+}
+.teaser-content p {
+  margin:0 !important;
+}
+.teaser-title a {
+  font-size:13px !important;
+  font-weight: bold !important;
 }
 </style>

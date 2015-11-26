@@ -35,3 +35,81 @@ mixin colLast(size)
     table.columns(class="#{size}")
       tr
         block
+
+
+mixin titleLayout(icone)
+  layout(label="Icone #{icone}")
+    table.top-frame.full-width
+      tr
+        td(width="5",style="font-size: 5px; line-height: 5px;padding: 0;")
+        td
+          table.full-width
+            tr
+              td(height="10",style="font-size: 10px; line-height: 10px;padding: 0;")
+                | &nbsp;
+          center
+            img.center(src='picto-#{icone}.png', width="30", height="30")
+          table.full-width
+            tr
+              td(height="10",style="font-size: 10px; line-height: 10px;padding: 0;")
+                | &nbsp;
+          div.brown-title
+            singleline(label="Titre", repeaterTitle="true")
+              | Veuillez choisir un titre
+            table.full-width
+              tr
+                td(height="10",style="font-size: 10px; line-height: 10px;padding: 0;")
+                  | &nbsp;
+            center
+              img.center(src='green-spacer.png', width="40", height="2")
+          table.full-width
+            tr
+              td(height="10",style="font-size: 10px; line-height: 10px;padding: 0;")
+                | &nbsp;
+        td(width="5",style="font-size: 5px; line-height: 5px;padding: 0;")
+
+mixin bouton(couleur)
+  layout(label="Bouton #{couleur}")
+    table.button
+      tr
+        td
+          a(href="#")
+            | Texte bouton
+
+mixin spacing(height)
+  table.full-width
+    tr
+      td(height="#{height}",style="font-size: 1px; line-height: #{height};padding: 0;") &nbsp;
+        | &nbsp;
+mixin spacingWithBorder(height)
+  table.full-width.mid-frame
+    tr
+      td(height="#{height}",style="font-size: 1px; line-height: #{height};padding: 0;") &nbsp;
+        | &nbsp;
+
+
+
+
+mixin menuLink(text, href)
+  table
+    tr
+      td
+        a.menu-link(href="#{href}" title="#{text}")
+          div(style="line-height:1.4")
+            | #{text}
+      td.vertical-mid.mobile-auto(width="20")
+        img(src="arrow-down.png", width="7", height="5")
+
+mixin footerLink(text, href)
+  a.footer-link.footer-style(href="#{href}", title="#{text}")
+    | #{text}
+
+mixin iconLink(icon, text, href)
+  td.iconLink(class="#{icon}")
+    a(href="#{href}" title="#{text}")
+      img(editable, src="#{icon}.png", width="35", height="35")
+
+mixin iconLink2(icon, text, href)
+  td.iconLink(class="#{icon}")
+    a(href="#{href}" title="#{text}")
+      img(src="#{icon}.png", width="29", height="28")

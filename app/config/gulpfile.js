@@ -23,7 +23,9 @@ var runSequence = require('run-sequence');
 var del = require('del');
 var notifier = require('node-notifier');
 var jade = require('gulp-jade');
-
+var less = require('gulp-less');
+var data = require('./data.json');
+var wait = require('gulp-wait');
 
 /* ==========================================================================
     FOLDERS
@@ -47,13 +49,25 @@ var exportDir = '../../export';
 /* ===== TEMPLATES ===== */
 gulp.task('templates', function() {
 
-  gulp.src(srcDir + '/html/template.jade')
+  return gulp.src(srcDir + '/html/template.jade')
     .pipe(jade({
-      pretty: true
+      locals: {
+        data: data,
+        pretty: true
+      }
     }))
     .pipe(rename('intermediate.html'))
     .pipe(gulp.dest(srcDir + '/html'))
+    .pipe(wait(2000))
 });
+
+/* ===== LESS ===== */
+gulp.task('less', function() {
+  return gulp.src('../vendor/ink/css/*.less')
+    .pipe(less())
+    .pipe(gulp.dest('../vendor/ink/css'))
+});
+
 
 /* ===== ARCHIVE ===== */
 gulp.task('export', function() {
@@ -83,7 +97,7 @@ gulp.task('html', function() {
   };
 
   // Get file
-    return gulp.src(srcDir + '/html/*.html')
+    return gulp.src(srcDir + '/html/intermediate.html')
         .pipe(inlineCss({
                 applyStyleTags: true,
                 applyLinkTags: true,
@@ -120,6 +134,11 @@ gulp.task('images', function () {
 gulp.task('clean', function (cb) {
   del([!buildDir + '/.gitignore', buildDir + '/**/*'], {force: true}, cb);
 });
+/* ===== CLEAN INTER ===== */
+// Delete everything in destination folder
+gulp.task('clean-inter', function (cb) {
+  del([srcDir + '/html/intermadiate.html'], {force: true}, cb);
+});
 /* ===== CLEAN-ZIP ===== */
 gulp.task('clean-zip', function(cb) {
     del([!exportDir + '/.gitignore', exportDir + '/**/*'], {force: true}, cb);
@@ -134,6 +153,12 @@ gulp.task('notify', function() {
     });
 });
 
+/* ===== WAIT ===== */
+gulp.task('wait', function() {
+  return gulp.src('./gulpfile.js')
+    .pipe(wait(2000))
+})
+
 /* ==========================================================================
     TASK RUNNERS
 ============================================================================= */
@@ -144,20 +169,22 @@ gulp.task('and-watch', ['default', 'watch']);
 /* ===== WATCH ===== */
 gulp.task('watch', function() {
     // Folders to watch and tasks to execute
-    gulp.watch([srcDir + '/html/jade.html'], ['templates', 'html']);
-    gulp.watch([srcDir + '/images/*'], ['images']);
-    gulp.watch([srcDir + '/css/*'], ['html']);
-
+    gulp.watch([srcDir + '/html/**/*.jade'], ['build']);
+    gulp.watch([srcDir + '/css/**/*.css'], ['build']);
 });
 
 /* ===== DEFAULT ===== */
 // Default gulp task ($ gulp)
 gulp.task('default', function(callback) {
-  runSequence(['clean', 'clean-zip'],
+  runSequence(['clean', 'clean-zip', 'clean-inter'],
               'templates',
+              'wait',
               'images',
               'html',
               ['export', 'export-img'],
-              'notify',
               callback);
 });
+
+gulp.task('build', function(callback) {
+  runSequence('templates', 'html', callback);
+})

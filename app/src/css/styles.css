@@ -1,6 +1,6 @@
 /* === ADDITIONAL LAYOUT RULES === */
 .no-pad {
-    padding: 0;
+    padding: 0 !important;
 }
 .no-pad-top {
     padding-top:0;
@@ -17,5 +17,145 @@
 .align-right {
     text-align: right;
 }
+.align-center {
+	text-align: center;
+}
+.vertical-mid {
+	vertical-align: middle;
+}
 
 /* === YOUR STYLES === */
+.header {
+	background-color: #5ea0ce;
+}
+/* .title-margin {
+	padding-top:35px;
+} */
+.header .title {
+	font-family:Arial;
+	font-weight:900;
+	color:#fff;
+	font-size:27px;
+}
+.menu-link {
+	color:#020202;
+	text-transform: uppercase;
+	font-family: Arial;
+	font-size:11px;
+}
+.donate {
+	text-transform: uppercase;
+	color:#c04234;
+	font-family: Arial;
+	font-weight:bold;
+	font-size:14px;
+}
+.w100 {
+	width:100% !important;
+}
+.bg-grey {
+	background-color:#efefef;
+}
+.pad-20 {
+	padding:20px !important;
+}
+.pad-10 {
+	padding:10px !important;
+}
+.bg-black {
+	background-color: #161616;
+}
+.body-title {
+	font-family: Arial;
+	font-weight:bold;
+	font-size:18px;
+}
+.white-text {
+	font-family: Arial;
+	font-size:14px;
+	color:#fff;
+	vertical-align: middle;
+	padding-right:5px;
+}
+.iconLink {
+	text-align: right;
+	padding-left:5px;
+}
+td {
+	font-family: Arial, sans-serif;
+}
+.agenda-title {
+	background-color: #5ea0ce;
+	color:#fff;
+	text-transform: uppercase;
+	font-weight: bold;
+	text-align: center;
+	padding:15px;
+}
+.template {
+	padding-left:20px;
+	padding-right:20px;
+}
+.template-top {
+	padding-top:20px;
+}
+.template-bot-last {
+	padding-bottom:20px;
+}
+.teaser-title {
+	font-size:13px;
+	font-weight: bold;
+}
+.teaser-content {
+	font-size:13px;
+	padding-bottom:20px;
+}
+.border-it {
+	border-left:3px solid #efefef;
+	border-right: 3px solid #efefef;
+}
+.border-it-last {
+	border-left:3px solid #efefef;
+	border-right: 3px solid #efefef;
+	border-bottom: 3px solid #efefef;
+}
+.border-please {
+	border-bottom:1px solid #c9c9c9;
+	padding-bottom:20px;
+}
+.bottom-link {
+	text-align:center;
+	padding-left:10px;
+	padding-top:10px;
+	padding-bottom:10px;
+	padding-right:20px;
+}
+.bottom-link-type {
+	font-size:12px;
+	color:#fff;
+	text-transform: uppercase;
+	font-weight:bold;
+}
+.dark-blue {
+	background-color: #326b94;
+}
+.light-blue {
+	background-color: #5ea0ce;
+}
+.seemore {
+	padding-left:10px;
+}
+.text-blue {
+	color:#5ea0ce;
+	font-weight:bold;
+}
+.footer-style {
+	text-transform: uppercase;
+	color:#6d6d6d;
+	font-size: 11px;
+}
+.footer-wrap {
+	width:200px;
+	margin-left:auto;
+	margin-right:auto;
+}

@@ -3,21 +3,187 @@ doctype strict
 html(xmlns='http://www.w3.org/1999/xhtml', xmlns:v='urn:schemas-microsoft-com:vml', xmlns:o='urn:schemas-microsoft-com:office:office')
   include includes/head
   body
-    +globalWrapper('#777777')
+    +globalWrapper('#fff')
 
       +fixedContainer
 
-        +rowFullWidth
-          td
-            | Lorem Ipsum on twelve columns
-          td.expander
+        // HEADER ROW STARTS HERE
+        table.row.header
+          tr
+            td.wrapper.no-pad.last
+              table.twelve.columns
+                tr
+                  // CONTENT CELL STARTS HERE
+                  td.no-pad
+                    img(src="logo-top.png" width="252" height="101")
+                  // CONTENT CELL ENDS HERE
+                  td.vertical-mid.no-pad-bottom
+                    table
+                      tr
+                        // CONTENT CELL STARTS HERE
+                        td.title-margin.title
+                          | l'Écho de la Fondation
+                        // CONTENT CELL ENDS HERE
+                  td.expander
+        // HEADER ROW ENDS HERE
 
-        +row
-          +col(six)
-            td
-              | Lorem Ipsum on six columns
-            td.expander
-          +colLast(six)
-            td
-              | Lorem Ipsum on six columns
-            td.expander
+        +spacing('20')
+
+        // MENU ROW STARTS HERE
+        table.row.menu
+          tr
+            td.wrapper
+              table.nine.columns
+                tr
+                  // CONTENT CELL STARTS HERE
+                  td.three.sub-columns
+                    +menuLink('Site de la fondation', 'http://www.fondationdelavenir.org/portail/')
+                  // CONTENT CELL ENDS HERE
+                  // CONTENT CELL STARTS HERE
+                  td.three.sub-columns
+                    +menuLink('Ressources en ligne', 'http://www.fondationdelavenir.org/ressources/')
+                  // CONTENT CELL ENDS HERE
+                  // CONTENT CELL STARTS HERE
+                  td.three.sub-columns
+                    +menuLink('Tous nos projets', 'http://www.fondationdelavenir.org/projets/')
+                  // CONTENT CELL ENDS HERE
+                  // CONTENT CELL STARTS HERE
+                  td.three.sub-columns.last
+                    +menuLink('Devenez partenaire', 'http://www.fondationdelavenir.org/devenir-partenaire/')
+                  td.expander
+            td.wrapper.last.vertical-mid
+              table.three.columns
+                tr
+                  // CONTENT CELL STARTS HERE
+                  td.no-pad.w100
+                    table.w100
+                      tr
+                        td.mobile-hidden(width=20)
+                          img(src="red-block.png" width="5" height="23")
+                        td.donate-container
+                          a.donate(href="https://dons.fondationdelavenir.org/asso/" title="Faire un don")
+                            | Faire un don
+                  // CONTENT CELL ENDS HERE
+                  td.expander
+        // MENU ROW ENDS HERE
+
+        +spacing('20')
+
+        // BODY ROW STARTS HERE
+        table.row.content
+          tr
+            td.wrapper
+              table.eight.columns.bg-grey
+                tr
+                  td.w100
+                    table.w100
+                      tr
+                        td.body-title.pad-20
+                          singleline.body-title(label="Titre de l'article")
+                            | Ceci est le titre de l'article.
+                      tr
+                        td.body-image.w100
+                          img.w100.img-mobile(editable, src="header.jpg", width="401", label="Hero Image")
+                      tr
+                        td.body-content.pad-20
+                          multiline(label="Corps de l'article")
+                            | Comprenant toutefois que son indulgence avait été plus joyeuse. Parlons sans images : d'aristocratique nature, il y consentira. Étonnée l'infirmière le secoua. Marquis, le bien résultant du croisement est souvent très grande. Revenu aux sentiments habituels de la vie humaine, et il trouvait du meilleur goût, et elle regardait dans ces intérieurs anciens, à propos de rester chez moi, chose que je n'attribue qu'une importance secondaire. Loin du coeur des morts. Accompagnant cette opinion d'un spécialiste ; et, le mugissement de la braise furieuse, si sauvage, qu'à coup sûr une amie autoritaire, et voire refusait parfois les invitations. Devenu maxime, sa perfection rejette les preuves de la légèreté de cavaliers consommés. 
+                tr
+                  td.pad-10.bg-black
+                    table.w100
+                      tr
+                        td.white-text
+                          | Partager cet article
+                        +iconLink('fb', '', '#')
+                        +iconLink('tt', '', '#')
+                        +iconLink('in', '', '#')
+                        +iconLink('gg', '', '#')
+                        +iconLink('sd', '', '#')
+                        +iconLink('pr', '', '#')
+
+                  td.expander
+            td.wrapper.last
+              table.four.columns
+                tr
+                  td.agenda-title
+                    | Agenda
+                tr
+                  td
+                    repeater
+                      layout(label="Bloc teaser")
+                        table.w100.border-it
+                          tr
+                            td.template.template-top.teaser-title
+                              singleline(label="Titre de l'article")
+                                | Titre de de l'article
+                          tr
+                            td.template.template-bot
+                              table.w100.border-please
+                                tr
+                                  td.teaser-content
+                                    multiline(label="Corps de l'article")
+                                      | Pourrait-il jamais exister quelqu'un qui pût m'engager.
+                      layout(label="Bloc teaser - dernier ou unique")
+                        table.w100.template.border-it-last
+                          tr
+                            td.template.template-top.teaser-title
+                              singleline(label="Titre de l'article")
+                                | Titre de de l'article
+                          tr
+                            td.template.template-bot-last.teaser-content
+                              multiline(label="Corps de l'article")
+                                | Jeu d'acquisition, et le curé au barbier, comment, il devait peser au moins deux cents hommes formant l'arrière-garde de l'armée d'invasion se pose sans arrêt...
+                  td.expander
+                tr
+                  td
+                    table.w100.dark-blue
+                      tr
+                        td.vertical-mid.seemore
+                          img(src="see-more.png" width="17" height="17")
+                        td.bottom-link
+                          a.bottom-link-type(href="http://www.fondationdelavenir.org/#colophon" title="Contactez-nous")
+                            | Contactez-nous
+                tr
+                  td
+                    table.w100.light-blue
+                      tr
+                        td.vertical-mid.seemore
+                          img(src="see-more.png" width="17" height="17")
+                        td.bottom-link
+                          a.bottom-link-type(href="http://www.fondationdelavenir.org/actualites/" title="Actualités")
+                            | Actualités
+                tr
+                  td
+                    +spacing('20')
+                tr
+                  td
+                    table.end-of-sidebar.footer-wrap
+                      tr
+                        td.text-blue.vertical-mid
+                          | Nous suivre
+                        +iconLink2('yt', "Fondation de l'Avenir sur Youtube", 'https://www.youtube.com/channel/UCB3iQ5SUQ1ayGGXfVrzK71A')
+                        +iconLink2('fk', "Fondation de l'Avenir sur Flickr", 'https://www.flickr.com/photos/137292370@N02')
+                        +iconLink2('tt2', "Fondation de l'Avenir sur Twitter", 'https://twitter.com/FondationAvenir?lang=fr')
+        // BODY ROW ENDS HERE
+
+        +spacing('20')
+
+        // FOOTER ROW STARTS HERE
+        table.row.footer
+          tr
+            td.wrapper.last
+              table.twelve.columns.footer-wrap
+                tr
+                  td.align-center.footer-style
+                    | Si vous avez des difficultés d'affichage,&nbsp; 
+                    webversion(href="#" title="Consultez la version en ligne")
+                      | consultez la version en ligne
+                tr
+                  td.align-center
+                    +footerLink('Mentions Légales', 'http://www.fondationdelavenir.org/mentions-legales/')
+                    | &nbsp;|&nbsp;
+                    +footerLink('Infos CNIL', 'http://www.fondationdelavenir.org/mentions-legales/')
+                    | &nbsp;|&nbsp;
+                    unsubscribe.footer-style
+                      | Se désabonner
+        // FOOTER ROW ENDS HERE

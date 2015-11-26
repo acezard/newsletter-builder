@@ -21,6 +21,8 @@
     "imagemin-pngquant": "~4.1.0",
     "node-notifier": "^4.2.3",
     "run-sequence": "^1.1.1",
-    "del": "~1.2.0"
+    "del": "~1.2.0",
+    "gulp-less": "~3.0.3",
+    "gulp-wait": "0.0.2"
   }
 }
