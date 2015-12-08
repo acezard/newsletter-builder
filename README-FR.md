@@ -9,7 +9,7 @@
 6. Futures mises à jour
 
 ## 1. Features
-* Framework Ink (Zurban) pour le layout CSS
+* Framework Ink (Zurb) pour le layout CSS
 * Jade pour le template HTML
 * Compatibilité avec tous les clients mails les plus courants
 * Responsive
